@@ -1,0 +1,49 @@
+.contenido2{
+    width: 1000px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+}
+.contenidoCliente{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.formDataCliente{
+    display: flex;
+    width: 400px;
+    gap: 50px;
+    background-color: rgb(133, 180, 251);
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+    border: 2px solid black;
+}
+.loginRC{
+    width: 500px;
+    margin: 60px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 20px 20px 20px 20px;
+}
+
+.btn-wsp{
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    line-height: 90px;
+    bottom: 30px;
+    right: 30px;
+    background: white;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.9);
+    z-index: 100;
+}

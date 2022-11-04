@@ -1,0 +1,53 @@
+{% extends "home.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+{% if request.user.is_staff %}
+
+<form class="formDataCliente" action="/AppMVT/buscar_cliente/" method="GET">
+    <input type="cuil_cuit" name="cuil_cuit" placeholder="Cuil/Cuit">
+    <button type="submit" class="btn btn-primary btndj">Buscar</button>
+
+</form>
+
+{% if busc_clientes %}
+    <ul>
+        {% for busc_cliente in busc_clientes %}
+        <li> Cuil/Cuit: {{busc_cliente.cuil_cuit}} </li>
+        <li> Nombre: {{busc_cliente.nombre_apellido}} </li>
+        <li> Domicilio: {{busc_cliente.domicilio}} </li>
+        <li> Telefono: {{busc_cliente.telefono}} </li>
+        <a> -------------------------------------- </a>
+        {% endfor %}
+    </ul>
+{% else %}
+    <table>
+        <tr>
+            <th> Cuil/Cuit:</th>
+            <th> Nombre:</th>
+            <th> Domicilio:</th>
+            <th> Telefono:</th>
+        </tr>
+    {% for cliente in clientes %}
+        <tr>
+            <td> {{cliente.cuil_cuit}}</td>
+            <td> {{cliente.nombre_apellido}}</td>
+            <td> {{cliente.domicilio}}</td>
+            <td> {{cliente.telefono}}</td>
+            <td>
+                <a href="/AppMVT/update_cliente/{{cliente.id}}" class="btn btn-warning">Edit</a>
+            </td>
+            <td>
+                <a href="/AppMVT/delete_cliente/{{cliente.id}}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a class="btn btn-success" href="/AppMVT/create_cliente">+ Agregar un nuevo Cliente</a>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

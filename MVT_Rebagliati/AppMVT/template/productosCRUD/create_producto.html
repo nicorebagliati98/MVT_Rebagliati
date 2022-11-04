@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<!-- Introducimos el formulario para la carga de productos-->
+
+{% if request.user.is_staff %}
+
+<div class="loginRC">
+    <form enctype="multipart/form-data" action="/AppMVT/create_producto/" method="POST">
+        <p class="display-4">Crear Producto</p>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-primary" type="submit">Registrar</button>
+    
+    
+    </form>
+</div>
+
+{% endif %}
+
+{% endblock %}

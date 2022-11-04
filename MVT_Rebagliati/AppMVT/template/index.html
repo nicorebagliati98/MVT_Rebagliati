@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'AppMVT/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'AppMVT/css/myestilo2.css'%}">
+    <title>RC SISTEMAS</title>
+</head>
+<body>
+    <script src="{% static 'AppMVT/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'AppMVT/js/jquery-3.6.1.min.js' %}"></script>
+
+    <a href="https://api.whatsapp.com/message/3U4QG2LYCUBZI1?autoload=1&app_absent=0" class="btn-wsp" target="_blank">
+        <img src="/media/images/icone-logo-whatsapp-vert.png" width="100" height="100">
+    </a>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <li class="nav-item">
+                <img src="/media/images/Untitled.png" width="40px" height="40px">
+            </li>
+            <a class="navbar-brand" href="http://127.0.0.1:8000/AppMVT/">RCSISTEMAS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            {% if request.user.is_authenticated %}
+            
+                {% if request.user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="http://127.0.0.1:8000/AppMVT/productos/">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="http://127.0.0.1:8000/AppMVT/facturas/">Facturas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="http://127.0.0.1:8000/AppMVT/clientes/">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.ambito.com/contenidos/dolar-oficial.html">Precio Dolar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://127.0.0.1:8000/AppMVT/usuarios/">Usuarios</a>
+                    </li>
+                    <li class="nav-item" style="position: absolute; right: 400px">
+                        <a class="nav-link">[PERFIL ADMINISTRADOR]</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color:white" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Soluciones</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Monitoreo Alarmas </a></li>
+                            <li><a class="dropdown-item" href="#">Sistema de Cámaras</a></li>
+                            <li><a class="dropdown-item" href="#">Cercos Électricos</a></li>
+                            <li><a class="dropdown-item" href="#">Integración Domotica</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Telecomunicaciones</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="http://127.0.0.1:8000/AppMVT/productos/">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="https://api.whatsapp.com/message/3U4QG2LYCUBZI1?autoload=1&app_absent=0">¡WhatsApp!</a>
+                    </li>
+                {% endif %}
+                
+                    <li class="nav-item" style="position: absolute; right: 100px">
+                        <a class="nav-link active" aria-current="page" href="/AppMVT/editar_usuario/">{{ user.email }}</a>
+                    </li>
+                    <li class="nav-item" style="position: absolute; right:60px">
+                        <img src="/media/{{ user.imagen }}" width="40px" height="40px">
+                    </li>
+                    <li class="nav-item" style="position: absolute; right: 10px">
+                        <a class="nav-link" href="http://127.0.0.1:8000/AppMVT/logout/">Salir</a>
+                    </li>
+
+            {% else %}
+                
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color:white" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Soluciones</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Monitoreo Alarmas </a></li>
+                                <li><a class="dropdown-item" href="#">Sistema de Cámaras</a></li>
+                                <li><a class="dropdown-item" href="#">Cercos Électricos</a></li>
+                                <li><a class="dropdown-item" href="#">Integración Domotica</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Telecomunicaciones</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" onclick="abrir_ingreso_guest('/AppMVT/login_model/')" href="#">Productos</a>
+                        </li>
+                        <li class="nav-item" style="position: absolute; right: 10px">
+                            <a class="nav-link active" aria-current="page" onclick="abrir_ingreso_guest('/AppMVT/login_model/')" href="#">INICIA SESION</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="https://api.whatsapp.com/message/3U4QG2LYCUBZI1?autoload=1&app_absent=0">¡WhatsApp!</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div style="margin:80px;">
+    {% block contenido %}
+        <p> Cargando... </p>
+    {% endblock %}
+  </div>
+  
+  <!-- Button trigger modal -->
+  <div class="modal fade" id="ingreso_guest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+
+  </div>
+{% block extrajs %}
+  <script type="text/javascript">
+    var $ = jQuery.noConflict();
+    function abrir_ingreso_guest(url){
+      $('#ingreso_guest').load(url, function (){
+        $(this).modal('show');
+      })
+    }
+  </script>
+{% endblock extrajs %}
+
+</body>
+</html>

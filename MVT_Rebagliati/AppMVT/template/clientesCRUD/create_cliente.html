@@ -1,0 +1,32 @@
+{% extends "home.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+{% if request.user.is_staff %}
+
+<!-- Introducimos el formulario para la carga del cliente-->
+<form class="formDataCliente" method="POST" action="/AppMVT/create_cliente/"> {% csrf_token %}
+    <input type="text" name="cuil_cuit" placeholder="Cuil/Cuit">
+    <input type="text" name="nombre_apellido" placeholder="Nombre y Apellido">
+    <input type="text" name="domicilio" placeholder="Domicilio">
+    <input type="tel" name="telefono" placeholder="Telefono">
+
+    <button type="submit"  class="btn btn-primary btndj">Registrar</button>
+</form>
+
+<!-- Introducimos el formulario para la carga del cliente en forma de tabla
+    
+<form class="formDataCliente" method="POST" action="/AppMVT/create_cliente/"> {% csrf_token %}
+    <table>
+        {{formulario.as_table}}
+    </table>
+    <button type="submit" class="btn btn-primary btndj">Registrar</button>
+</form>
+
+-->
+
+{% endif %}
+
+{% endblock %}

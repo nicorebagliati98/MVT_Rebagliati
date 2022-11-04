@@ -1,0 +1,67 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block contenido %}
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+        <h1>LISTA DE PRODUCTOS:</h1>
+            <form class="d-flex" action="/AppMVT/buscar_producto/" method="GET">
+                <input class="form-control me-2" type="producto" name="producto" placeholder="Nombre del producto">
+                <button type="submit" class="btn btn-outline-success">Buscar</button>
+            </form>
+        </div>
+    </nav>
+{% if busc_productos %}
+    <div class="row row-cols-1 row-cols-md-4 g-2">
+        {% for busc_producto in busc_productos %}
+        <div class="col">
+            <div class="card text-center" width="40">
+                <img src="/media/{{busc_producto.imagen}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    Codigo: {{busc_producto.code}}
+                    <h4 class="card-title">{{busc_producto.producto}}</h4>
+                    <p class="card-text">{{busc_producto.descripcion}}</p>
+                    <font size="6px">${{busc_producto.precio}}</font> ${{busc_producto.precio_sin_iva}}+iva({{busc_producto.iva}})
+                    {% if request.user.is_staff %}
+                        <div class="card-footer">
+                            <a href="/AppMVT/update_producto/{{busc_producto.id}}" class="btn btn-warning">Edit</a>
+                            <a href="/AppMVT/delete_producto/{{busc_producto.id}}" class="btn btn-danger">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+
+    {% if request.user.is_staff %}
+        <a class="btn btn-success" href="/AppMVT/create_producto/">+ Agregar un nuevo producto</a>
+    {% endif %}
+
+    <div class="row row-cols-1 row-cols-md-4 g-2">
+        {% for producto in productos %}
+        <div class="col">
+            <div class="card text-center" width="40">
+                <img src="/media/{{producto.imagen}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    Codigo: {{producto.code}}
+                    <h4 class="card-title">{{producto.producto}}</h4>
+                    <p class="card-text">{{producto.descripcion}}</p>
+                    <font size="6px">${{producto.precio}}</font> ${{producto.precio_sin_iva}}+iva({{producto.iva}})
+                    {% if request.user.is_staff %}
+                        <div class="card-footer">
+                            <a href="/AppMVT/update_producto/{{producto.id}}" class="btn btn-warning">Edit</a>
+                            <a href="/AppMVT/delete_producto/{{producto.id}}" class="btn btn-danger">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+{% endif %}
+
+{% endblock %}

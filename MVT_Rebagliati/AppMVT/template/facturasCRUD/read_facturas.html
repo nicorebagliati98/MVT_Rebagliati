@@ -1,0 +1,41 @@
+{% extends "home.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+{% if request.user.is_staff %}
+
+<form class="formDataCliente" action="/AppMVT/buscar_factura/" method="GET">
+    <input type="numero" name="numero" placeholder="Nº de Factura">
+    <button type="submit" class="btn btn-primary btndj">Buscar</button>
+
+</form>
+
+{% if busc_facturas %}
+    <ul>
+        {% for busc_factura in busc_facturas %}
+        <li> Fecha: {{busc_factura.fecha}} </li>
+        <li> Tipo: {{busc_factura.tipo}} </li>
+        <li> Cuil/Cuit: {{busc_factura.cuil_cuit}} </li>
+        <li> Nombre: {{busc_factura.nombre_apellido}} </li>
+        <li> Numero: {{busc_factura.numero}} </li>
+        <li> Monto s/iva: {{busc_factura.monto_sin_iva}} </li>
+        <li> Iva: {{busc_factura.iva}} </li>
+        <a> -------------------------------------- </a>
+        {% endfor %}
+    </ul>
+{% else %}
+    {% for factura in facturas %}
+        <li>
+            {{ factura }}
+            <a href="/AppMVT/delete_factura/{{factura.id}}" class="btn btn-danger">Delete</a>
+        </li>
+        <br>
+    {% endfor %}
+    <a class="btn btn-success" href="/AppMVT/create_factura">+ Agregar una nueva factura</a>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

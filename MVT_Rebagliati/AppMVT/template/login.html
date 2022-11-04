@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="loginRC">
+    <form action="" method="POST">
+        <p class="display-4">Inicia Seción</p>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Iniciar Seción</button>
+        <a class="btn btn-secondary" href="/AppMVT/registro/">Registrarte</a>
+    </form>
+</div>
+
+{% endblock %}

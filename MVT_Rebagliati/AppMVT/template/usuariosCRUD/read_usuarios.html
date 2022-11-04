@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+{% if request.user.is_staff %}
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+        <h1>LISTA DE USUARIOS:</h1>
+            <form class="d-flex" action="/AppMVT/buscar_usuario/" method="GET">
+                <input class="form-control me-2" type="usuario" name="usuario" placeholder="nombres">
+                <button type="submit" class="btn btn-outline-success">Buscar</button>
+            </form>
+        </div>
+    </nav>
+    {% if busc_usuarios %}
+        <div class="row row-cols-1 row-cols-md-4 g-2">
+            {% for busc_usuario in busc_usuarios %}
+            <div class="col">
+                <div class="card" width="50">
+                    <img src="/media/{{busc_usuario.imagen}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        ID: {{usuario.id}}
+                        <h4 class="card-title">{{usuario.nombres}} {{usuario.apellidos}}</h4>
+                        <p class="card-text">{{usuario.email}}</p>
+                        <font size="4px">Active: {{usuario.usuario_activo}}, Admin: {{usuario.usuario_administrador}}</font>
+                        
+                        <div class="card-footer">
+                            <a href="/AppMVT/editar_usuario/" class="btn btn-warning">Edit</a>
+                            <a href="/AppMVT/delete_usuario/{{usuario.id}}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+
+        
+        <a class="btn btn-success" href="/AppMVT/registro/">+ Registrar un nuevo usuario</a>
+
+        <div class="row row-cols-1 row-cols-md-4 g-2">
+            {% for usuario in usuarios %}
+            <div class="col">
+                <div class="card text-center" width="40">
+                    <img src="/media/{{usuario.imagen}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        ID: {{usuario.id}}
+                        <h4 class="card-title">{{usuario.nombres}} {{usuario.apellidos}}</h4>
+                        <p class="card-text">{{usuario.email}}</p>
+                        <font size="4px">Active: {{usuario.usuario_activo}}, Admin: {{usuario.usuario_administrador}}</font>
+                        
+                        <div class="card-footer">
+                            <a href="/AppMVT/editar_usuario/" class="btn btn-warning">Edit</a>
+                            <a href="/AppMVT/delete_usuario/{{usuario.id}}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    {% endif %}
+
+{% endif %}
+
+{% endblock %}

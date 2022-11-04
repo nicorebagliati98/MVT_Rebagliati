@@ -1,0 +1,24 @@
+{% extends "home.html" %}
+
+{% load static %}
+
+{% block contenido %}
+<!-- Introducimos el formulario para la carga de facturas-->
+
+{% if request.user.is_staff %}
+
+<form class="formDataCliente" method="POST" action="/AppMVT/create_factura/"> {% csrf_token %}
+    <input type="date" name="fecha" placeholder="Fecha">
+    <input type="text" name="tipo" placeholder="Tipo">
+    <input type="text" name="nombre_apellido" placeholder="Nombre y Apellido">
+    <input type="number" name="cuil_cuit" placeholder="Cuil/Cuit">
+    <input type="number" name="numero" placeholder="Nº Factura">
+    <input type="number" min="0" step="0.1" name="monto_sin_iva" placeholder="Monto s/iva">
+    <input type="number" min="0" step="0.1" name="iva" placeholder="Iva">
+
+    <button type="submit"  class="btn btn-primary btndj">Registrar Factura</button>
+</form>
+
+{% endif %}
+
+{% endblock %}
